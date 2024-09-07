@@ -143,13 +143,16 @@ $$\text{The }i\text{th component of }Ax\text{ is }\sum_{j=1}^na_{ij}x_j.$$
   Identity matrix : 곱했을 때, 그대로인 행렬
   Elementary matrix : 곱했을 때, elimination과 같은 효과를 내는 행렬
 
-  $$I=\begin{bmatrix}1&0&0\\
-  0&1&0\\
-  0&0&1\end{bmatrix}\text{ has } Ib=b \quad E_{31}=\begin{bmatrix}1&0&0\\
-  0&1&0\\
-  -\ell&0&1\end{bmatrix}\text{ has }E_{31}b=\begin{bmatrix}b_1\\
-  b_2\\
-  b_3-\ell b_1\end{bmatrix}$$
+$$I=\begin{bmatrix}1&0&0\\
+0&1&0\\
+0&0&1\end{bmatrix}
+\text{ has } Ib=b
+\quad E_{31}=\begin{bmatrix}1&0&0\\
+0&1&0\\
+-\ell&0&1\end{bmatrix}\text{ has }E_{31}b=\begin{bmatrix}b_1\\
+b_2\\
+b_3-\ell b_1
+\end{bmatrix}$$
 
 ### Matrix Multiplication
 - Multiplication by columns
