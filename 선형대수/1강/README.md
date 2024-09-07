@@ -8,10 +8,8 @@
 
 ## 1.2 The Geometry of Linear Equations
 연립 일차 방정식은 행으로 볼 수도, 열으로 볼 수도 있음
-$$\begin{aligned}\begin{array}{ccccccc}
-2x&-&y&=&1\\x&+&y&=&5
 
-\end{array}\end{aligned}$$
+$$\begin{aligned}\begin{array}{ccccccc}2x&-&y&=&1\\x&+&y&=&5\end{array}\end{aligned}$$
 $$x\begin{bmatrix}2\\1\end{bmatrix}+y\begin{bmatrix}-1\\1\end{bmatrix}=\begin{bmatrix}1\\5\end{bmatrix}$$
 ![1.2.1](images/1.2.1.png)
 ### Column Vectors and Linear Combinations
