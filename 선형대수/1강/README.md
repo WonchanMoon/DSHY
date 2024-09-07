@@ -136,7 +136,7 @@ $$2\begin{bmatrix}1\\
 - **Sigma notation**
   $i$번째 요소를 다음과 같이 표현 가능
 
-$$\text{The }i\text{th component of }Ax\mathrm{~is~}\sum_{j=1}^na_{ij}x_j.$$
+$$\text{The }i\text{th component of }Ax\text{ is }\sum_{j=1}^na_{ij}x_j.$$
 
 ### The Matrix Form of One Elimination Step
 - **Identity matrix** and **Elementary matrix**
@@ -145,12 +145,12 @@ $$\text{The }i\text{th component of }Ax\mathrm{~is~}\sum_{j=1}^na_{ij}x_j.$$
 
   $$I=\begin{bmatrix}1&0&0\\
   0&1&0\\
-  0&0&1\end{bmatrix} \ \text{has}\  Ib=b \quad E_{31}=\begin{bmatrix}1&0&0\\
+  0&0&1\end{bmatrix}\text{ has } Ib=b \quad E_{31}=\begin{bmatrix}1&0&0\\
   0&1&0\\
-  -\ell&0&1\end{bmatrix} \ \text{has} \ E_{31}b=\begin{bmatrix}b_1\\
+  -\ell&0&1\end{bmatrix}\text{ has }E_{31}b=\begin{bmatrix}b_1\\
   b_2\\
   b_3-\ell b_1\end{bmatrix}$$
-  
+
 ### Matrix Multiplication
 - Multiplication by columns
   아래가 성립하려면 $A$의 열의 개수와 $B$의 행의 개수가 같아야 함
