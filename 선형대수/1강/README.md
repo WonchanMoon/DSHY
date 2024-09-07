@@ -46,6 +46,7 @@ $$\mathbf{1}\begin{bmatrix}2 \\
 아래서부터 해를 대입(**back-substitution**)하며 다음 해를 구하는 방식
 
 ### Elimination
+
 $$\begin{aligned}\begin{array}{ccccccc}
 &2u&+&\nu&+&w&=&5\\
 &4u&-&6\nu&&&=&-2\\
@@ -67,7 +68,14 @@ $$\begin{aligned}\begin{array}{ccccccc}
 \end{array}\end{aligned}$$
 <center>first pivot : 2, second pivot : -8, last pivot : 1</center>
 
-$$\begin{bmatrix}2&1&1&5\\4&-6&0&-2\\-2&7&2&9\end{bmatrix}\longrightarrow\begin{bmatrix}2&1&1&5\\0&-8&-2&-12\\0&8&3&14\end{bmatrix}\longrightarrow\begin{bmatrix}2&1&1&5\\0&-8&-2&-12\\0&0&1&2\end{bmatrix}$$
+$$\begin{bmatrix}2&1&1&5\\
+4&-6&0&-2\\
+-2&7&2&9\end{bmatrix}\longrightarrow\begin{bmatrix}2&1&1&5\\
+0&-8&-2&-12\\
+0&8&3&14\end{bmatrix}\longrightarrow\begin{bmatrix}2&1&1&5\\
+0&-8&-2&-12\\
+0&0&1&2\end{bmatrix}$$
+
 위와 같이 간단히 Elimination을 나타낼 수 있음
 
 ### back-substitution
@@ -82,34 +90,77 @@ $$\begin{bmatrix}2&1&1&5\\4&-6&0&-2\\-2&7&2&9\end{bmatrix}\longrightarrow\begin{
 ### Multiplication of a Matrix and a Vector
 - **Matrix form** $Ax=b$
   연립 일차 방정식은 다음과 같은 행렬 형식으로 표현됨
-$$\begin{bmatrix}2&1&1\\4&-6&0\\-2&7&2\end{bmatrix}\begin{bmatrix}u\\v\\w\end{bmatrix}=\begin{bmatrix}5\\-2\\9\end{bmatrix}$$
+
+$$\begin{bmatrix}2&1&1\\
+4&-6&0\\
+-2&7&2\end{bmatrix}\begin{bmatrix}u\\
+v\\
+w\end{bmatrix}=\begin{bmatrix}5\\
+-2\\
+9\end{bmatrix}$$
 
 
 - **inner product**
   행 곱하기 열이 행렬곱의 기초이며, 이를 내적(**inner product**)이라고 함
-$$\begin{bmatrix}2&1&1\end{bmatrix}\begin{bmatrix}1\\1\\2\end{bmatrix}=\begin{bmatrix}2\cdot1+1\cdot1+1\cdot2\end{bmatrix}=\begin{bmatrix}5\end{bmatrix}$$
+
+$$\begin{bmatrix}2&1&1\end{bmatrix}\begin{bmatrix}1\\
+1\\
+2\end{bmatrix}=\begin{bmatrix}2\cdot1+1\cdot1+1\cdot2\end{bmatrix}=\begin{bmatrix}5\end{bmatrix}$$
 
 - $Ax$ by rows
   행렬곱은 행과 열, 두가지 관점으로 이해할 수 있음
-$$\begin{bmatrix}1&1&6\\3&0&1\\1&1&4\end{bmatrix}\begin{bmatrix}2\\5\\0\end{bmatrix}=\begin{bmatrix}1\cdot2+1\cdot5+6\cdot0\\3\cdot2+0\cdot5+3\cdot0\\1\cdot2+1\cdot5+4\cdot0\end{bmatrix}=\begin{bmatrix}7\\6\\7\end{bmatrix}$$
+
+$$\begin{bmatrix}1&1&6\\
+3&0&1\\
+1&1&4\end{bmatrix}\begin{bmatrix}2\\
+5\\
+0\end{bmatrix}=\begin{bmatrix}1\cdot2+1\cdot5+6\cdot0\\
+3\cdot2+0\cdot5+3\cdot0\\
+1\cdot2+1\cdot5+4\cdot0\end{bmatrix}=\begin{bmatrix}7\\
+6\\
+7\end{bmatrix}$$
 
 - $Ax$ by columns
-$$2\begin{bmatrix}1\\3\\1\end{bmatrix}+5\begin{bmatrix}1\\0\\1\end{bmatrix}+0\begin{bmatrix}6\\3\\4\end{bmatrix}=\begin{bmatrix}7\\6\\7\end{bmatrix}$$
+
+$$2\begin{bmatrix}1\\
+3\\
+1\end{bmatrix}+5\begin{bmatrix}1\\
+0\\
+1\end{bmatrix}+0\begin{bmatrix}6\\
+3\\
+4\end{bmatrix}=\begin{bmatrix}7\\
+6\\
+7\end{bmatrix}$$
   
 
 - **Sigma notation**
   $i$번째 요소를 다음과 같이 표현 가능
+
 $$\text{The }i\text{th component of }Ax\mathrm{~is~}\sum_{j=1}^na_{ij}x_j.$$
 
 ### The Matrix Form of One Elimination Step
 - **Identity matrix** and **Elementary matrix**
   Identity matrix : 곱했을 때, 그대로인 행렬
   Elementary matrix : 곱했을 때, elimination과 같은 효과를 내는 행렬
-  $$ I=\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix} \ \text{has}\  Ib=b \quad E_{31}=\begin{bmatrix}1&0&0\\0&1&0\\-\ell&0&1\end{bmatrix} \ \text{has} \ E_{31}b=\begin{bmatrix}b_1\\b_2\\b_3-\ell b_1\end{bmatrix}$$
+
+  $$I=\begin{bmatrix}1&0&0\\
+  0&1&0\\
+  0&0&1\end{bmatrix} \ \text{has}\  Ib=b \quad E_{31}=\begin{bmatrix}1&0&0\\
+  0&1&0\\
+  -\ell&0&1\end{bmatrix} \ \text{has} \ E_{31}b=\begin{bmatrix}b_1\\
+  b_2\\
+  b_3-\ell b_1\end{bmatrix}$$
+  
 ### Matrix Multiplication
 - Multiplication by columns
   아래가 성립하려면 $A$의 열의 개수와 $B$의 행의 개수가 같아야 함
-$$AB=A\begin{bmatrix}b_1\\b_2\\b_3\end{bmatrix}=\begin{bmatrix}Ab_1\\Ab_2\\Ab_3\end{bmatrix}$$
+
+$$AB=A\begin{bmatrix}b_1\\
+b_2\\
+b_3\end{bmatrix}=\begin{bmatrix}Ab_1\\
+Ab_2\\
+Ab_3\end{bmatrix}$$
+
 ![1.4.1](images/1.4.1.png)
 - 몇가지 성질
   1. $(EA)x = E(Ax)$
