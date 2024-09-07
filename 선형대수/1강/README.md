@@ -1,4 +1,4 @@
-# Matrices and Gaussian Elimination
+# 1강 Matrices and Gaussian Elimination
 
 ## 1.1 Introduction
 선형대수의 중심 문제 : 연립 일차 방정식 풀기
