@@ -18,13 +18,22 @@ $$x
 \begin{bmatrix}2 \\
 1\end{bmatrix}
 +y\begin{bmatrix}-1 \\
-1\end{bmatrix}=\begin{bmatrix}1 \\ 5\end{bmatrix}$$
+1\end{bmatrix}=\begin{bmatrix}1 \\
+5\end{bmatrix}$$
 
 ![1.2.1](images/1.2.1.png)
 ### Column Vectors and Linear Combinations
 **Linear Combination** : 각 벡터들에 상수가 곱해지고, 그 항들을 더한 식
 
-$$\mathbf{1}\begin{bmatrix}2 \\ 4 \\ -2\end{bmatrix}+\mathbf{1}\begin{bmatrix}1 \\ -6 \\ 7\end{bmatrix}+\mathbf{2}\begin{bmatrix}1 \\ 0 \\ 2\end{bmatrix}=\begin{bmatrix}5 \\ -2 \\ 9\end{bmatrix}$$
+$$\mathbf{1}\begin{bmatrix}2 \\
+ 4 \\
+ -2\end{bmatrix}+\mathbf{1}\begin{bmatrix}1 \\
+-6 \\
+7\end{bmatrix}+\mathbf{2}\begin{bmatrix}1 \\
+0 \\
+2\end{bmatrix}=\begin{bmatrix}5 \\
+-2 \\
+9\end{bmatrix}$$
 
 결국 연립 선형 방정식의 해는 등식을 만족하는 열들의 Linear Combination을 찾는 것과 같음
 ### Singular Case
