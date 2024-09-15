@@ -40,7 +40,7 @@ $$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu},\boldsymbol{\Sigma})=\frac{1}{(2\pi)^{
 **i.i.d.** 한 random sample들의 **합**은, 그 수가 **커질수록** **정규분포**에 가까워진다.
 
 ### Geometry of the Gaussian
-![[스크린샷 2024-09-14 오후 3.59.16.png]]
+!(images/스크린샷 2024-09-14 오후 3.59.16.png)
 정규분포는 $\mathbf{x}$에서 $\mathbf{y}$로의 축 변환과 같다.
 $y_i=\mathbf{u}_i^\mathrm{T}(\mathbf{x-\mu})$ << $\mathbf{u}_i$는 공분산 행렬에 대한 고유벡터 (공분산 행렬은 대칭행렬로, 고윳값 항상 실수, 고유벡터들은 orthonormal하게 잡을 수 있음)
 $\mathbf{y}=\mathbf{U}(\mathbf{x-\mu})$ << 벡터로의 확장
