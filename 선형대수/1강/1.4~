@@ -1,0 +1,73 @@
+# 1.5 Triangular Factors and Row Exchanges
+
+$Ax=\begin{bmatrix}2&1&1\\4&-6&0\\-2&7&2\end{bmatrix}\begin{bmatrix}u\\v\\w\end{bmatrix}=\begin{bmatrix}5\\-2\\9\end{bmatrix}=b$
+- 이러한 문제를 풀려는게 목적
+
+
+
+$Ux=\begin{bmatrix}2&1&1\\0&-8&-2\\0&0&1\end{bmatrix}\begin{bmatrix}u\\v\\w\end{bmatrix}=\begin{bmatrix}5\\-12\\2\end{bmatrix}=c$
+- 이런씩으로 Upper triangle matrix를 만들어서 해결하면 쉬음
+
+$E^{-1}F^{-1}G^{-1}U=A\mathrm{~is~}LU=A.$
+- 굳이 굳이 이렇게 표현할수 있음
+
+### Elementary Matrix
+- $I$를 한번씩 연산한 매트릭스들
+- 연산의 종류
+	- 행교환
+	- 한 행의 상수배
+	- 한 행에서 다른 상수배 해서 행을 더하기
+$E_k\cdots E_2E_1A=U$
+- 이런씩으로 Upper triangle matrix을 만들수 있음
+- 그냥 Gaussian Elimination을 메트릭스로 표현한 것
+- E들을 모두 넘기면 $A = LU$의 형태로 만들수 있음
+
+## One Linear System = Two Triangular Systems
+$\textbf{Splitting of}Ax=b\quad First\quad Lc=b\quad$ and then $\quad Ux=c$
+- LU 분해 어디서 많이 보던것 들이죠?
+- 위에 방법을 활용하면 만들수 있습니다.
+
+
+## Row Exchange and Permutation Matrices
+### Permutation Matrice
+- 행교환을 위한 매트릭스
+- 3x3에서의 예시
+$\begin{gathered}I=\begin{bmatrix}1&&\\&1&\\&&1\end{bmatrix}\quad P_{21}=\begin{bmatrix}&1&\\1&&\\&&1\end{bmatrix}\\P_{31}=\begin{bmatrix}&&1\\&1&\\1&&\end{bmatrix}\quad P_{32}=\begin{bmatrix}1&&\\&&1\\&1&\end{bmatrix}\end{gathered}$
+
+# Inverse and Transpose
+
+$\mathrm{If}\quad b=Ax\quad\mathrm{then}\quad A^{-1}b=x.$
+- 이정도는 아시죠?
+- Ax 가 0이고 x가 0이 아니면 A는 inverse가 없음
+- Ax = 0
+- The inverse exists if and only if elimination produces n pivots (피봇이 각 열에서 행을 소거할때 기준이 되는 요소라고 함)
+- $\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$
+- $A=\begin{bmatrix}d_1\\&\ddots\\&&d_n\end{bmatrix}\quad\text{then}\quad A^{-1}=\begin{bmatrix}1/d_1\\&\ddots\\&&1/d_n\end{bmatrix}\quad\text{and}\quad AA^{-1}=I.$
+- $(ABC)^{-1}=C^{-1}B^{-1}A^{-1}$
+
+## Gauss-Jordon
+![[Pasted image 20240915013032.png]]
+![[Pasted image 20240915013045.png]]
+- 역행렬을 만드는 방법
+- 계산수
+	- $\frac{n^3}{6}+\frac{n^3}{3}+n\left(\frac{n^2}{2}\right)=n^3$
+
+## Transpose Matrix
+$A=\begin{bmatrix}2&1&4\\0&0&3\end{bmatrix}\quad\text{then}\quad A^{\mathrm{T}}=\begin{bmatrix}2&0\\1&0\\4&3\end{bmatrix}$
+- 요정돈 아시쥬?
+## Symmetric Matrices
+$A=\begin{bmatrix}1&2\\2&8\end{bmatrix}\quad\text{and}\quad D=\begin{bmatrix}1&0\\0&4\end{bmatrix}\quad\text{and}\quad A^{-1}=\frac{1}{4}\begin{bmatrix}8&-2\\-2&1\end{bmatrix}$
+- 요런것들
+- 요것도 아시쥬?
+
+# 1.7 Special Matrices and Applications
+- 효율적인 행렬
+	- 큰 행렬을 연산을 할때는 계산양이 많기 때무에 효율적인 행렬을 사용하는 것이 좋다
+		- 희소행렬
+			- 많은 0을 행렬
+		- triangular 행렬
+		- 대칭행렬
+		- positive definite
+			- $x^{T}Ax > 0$ for $\forall x$   
+- 오차를 다룰때 조심해야한다
+	- 결과를 확확 바꿀수 있음
