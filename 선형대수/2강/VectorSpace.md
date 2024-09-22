@@ -12,7 +12,14 @@ $\mathbf{R}^{n}$은 $n$개의 component를 가지는 모든 column vector를 포
 
 벡터끼리의 합과 스칼라곱은 vector space에 속하는 또 다른 vector를 생성하고, 이 vector 역시 아래 eight properties를 만족
 ### Eight Properties
-모든 Vector Space에서는 **벡터끼리의 합**과, **스칼라 곱**이 가능. 즉, **linear combination**이 가능.
+1. $x + y = y + x$
+2. $x+(y+z)=(x+y)+z$
+3. $\text{There is a unique "zero vector" s.t. }x+0 = x\ \text{for all }x.$
+4. $\text{For each }x\ \text{there is a unique vector }-x\ \text{such that }x+(-x)=0.$
+5. $1x=x$
+6. $(c_{1}c_{2})x=c_{1}(c_{2}x)$
+7. $c(x+y)=cx+cy$
+8. $(c_{1}+c_{2})x=c_{1}x+c_{2}x$
 ### Subspace
 정의 : Vector space의 **subspace**는, vector space의 **nonempty subset**으로서 vector space의 조건(subspace의 vector 끼리의 **linear combination**이 subspace에 존재)을 만족하는 것을 말한다.
 1) subspace의 임의의 두 벡터 $x, y$가 있을 때, $x+y$도 subspace에 존재
