@@ -90,6 +90,7 @@ $$\begin{bmatrix}1&3&3&2\\0&0&3&3\\0&0&0&0\end{bmatrix}\longrightarrow\begin{bma
 pivot을 1로 만들어주고, pivot 위로도 전부 0이 되도록...
 $R$은 $A$ 에서 elimination이 끝난 matrix이다.
 $Rx=0$의 solution은 $Ux=0,\ Ax=0$ 과 같은 solution을 가지기 때문에, 우리는 이 $R$로 $A$의 Null Space를 빠르게 찾을 수 있다.
+- 왜죠?
 
 ### Pivot Variables and Free Variables
 $Rx=0$ 의 solution을 읽어내는 것이 목표! pivot이 중요하다.
@@ -105,6 +106,7 @@ $$\begin{aligned}u+3v-y&=0\quad\text{yields}\quad u=-3v+y\\w+y&=0\quad\text{yiel
 즉, 최종 $x$는 아래와 같이 표현이 가능하다.
 $$x=\begin{bmatrix}-3v+y\\v\\-y\\y\end{bmatrix}=v\begin{bmatrix}-3\\1\\0\\0\end{bmatrix}+y\begin{bmatrix}1\\0\\-1\\1\end{bmatrix}$$
 여기서 각 vector를 **speical solution**이라고 부른다. 그리고 $Rx=0$의 모든 해는 speical solution들의 linear combination으로 만들어진다.
+얘네가 Nullspace의 basis가 되겠습니다 ~
 
 아래 방법으로 $Ax=0$을 빠르게 풀어낼 수 있다.
 1. $Rx=0$ 을 만들고, pivot variable과 free variable을 찾는다.
@@ -141,13 +143,13 @@ $C(A)$ 를 $b_{3}-2b_{2}+5b_{1}=0$ 을 만족하는 vector $b$로 만들어지�
 $$Ax=b\quad\begin{bmatrix}1&3&3&2\\2&6&9&7\\-1&-3&3&4\end{bmatrix}\begin{bmatrix}u\\v\\w\\y\end{bmatrix}=\begin{bmatrix}1\\5\\5\end{bmatrix}$$
 $$Ux=c\quad\begin{bmatrix}1&3&3&2\\0&0&3&3\\0&0&0&0\end{bmatrix}\begin{bmatrix}u\\v\\w\\y\end{bmatrix}=\begin{bmatrix}1\\3\\0\end{bmatrix}$$
 그리고 Back-substitution을 통해, 
-$$3w+3y=3\quad\mathrm{~or~}\quad w=1-y\\u+3v+3w+2y=1\quad\mathrm{~or~}\quad u=-2-3v+y.$$
+$$\begin{aligned}3w+3y=3\quad &\mathrm{~or~}\quad w=1-y \\ u+3v+3w+2y=1\quad &\mathrm{~or~}\quad u=-2-3v+y.\end{aligned}$$
 임을 알아낼 수 있다.
 
 -따라서 최종 solution은 아래와 같다.
 $$\begin{aligned}\textbf{Complete solution}\ x\\x=x_{p}+x_{n}\\ \end{aligned}
 \quad 
-x=\begin{bmatrix}u\\\nu\\w\\y\end{bmatrix}=\begin{bmatrix}-2\\0\\1\\0\end{bmatrix}+\nu\begin{bmatrix}-3\\1\\0\\0\end{bmatrix}+y\begin{bmatrix}1\\0\\-1\\1\end{bmatrix}$$
+x=\begin{bmatrix}u\\v\\w\\y\end{bmatrix}=\begin{bmatrix}-2\\0\\1\\0\end{bmatrix}+\nu\begin{bmatrix}-3\\1\\0\\0\end{bmatrix}+y\begin{bmatrix}1\\0\\-1\\1\end{bmatrix}$$
 이때, free variable이 달려있지 않은 vector를 **particular solution** 이라고 한다.
 그리고 particular solution은 $Ax_{p}=b$를 만족하는 $x_{p}$ 이다.
 particular solution은 모든 free variable을 0으로 두고 쉽게 구할 수 있다.
@@ -178,7 +180,7 @@ $$A=\begin{bmatrix}1&3&3&2\\2&6&9&5\\-1&-3&3&0\end{bmatrix}$$
 아래 matrix의 column들은 linearly independent.
 $$A=\begin{bmatrix}3&4&2\\0&1&5\\0&0&2\end{bmatrix}$$
 
-- $N(A) = {\text{zero vector}}$ 이면 $A$의 column들은 linearly independent.**
+- $N(A) = \{ \text{zero vector} \}$ 이면 $A$의 column들은 **linearly independent.**
 이 아이디어를 활용하여 여러 벡터의 linearly independence를 체크할 수 있다.
 그 vector들을 column으로 갖는 matrix $A$로 만들고, $Ac=0$을 풀어보면 알 수 있다. $c=0$이 아닌 solution이 나온다면, vector들은 dependent.
 
@@ -207,7 +209,7 @@ vector space $V$가 $w_{1},\dots,w_{l}$의 모든 linear combination으로 구�
 
 ### Basis for a Vector Space
 #### 2I
-vector space $V$의 basis는 아래 두 성질을 동시에 만족시키는 vector의 sequence이다.
+vector space $V$의 **basis**는 아래 두 성질을 동시에 만족시키는 vector의 sequence이다.
 1.  vector들이 linearly independent.
 2. 그 vector들이 $V$를 span 해야함.
 
@@ -223,6 +225,7 @@ $$A=\begin{bmatrix}1&1\\2&3\end{bmatrix}$$
 - Echelon matrix $U$
 pivot을 가지고 있는 column들이, column space의 basis가 된다. 
 Echelon matrix의 column space와, elimination이 이루어지기 전 matrix의 column space는 다르다.
+하지만 independent column의 개수는 보존이 됩니다~
 $$A=\begin{bmatrix}1&3&3&2\\2&6&9&7\\-1&-3&3&4\end{bmatrix} \quad U=\begin{bmatrix}1&3&3&2\\0&0&3&1\\0&0&0&0\end{bmatrix}$$
 $A$의 column space는 첫번재, 세번째 column으로 span 되는 plane.
 $U$의 column space 역시 첫번째, 세번째 column으로 span 되는 plane 이지만, 이는 $xy$평면
