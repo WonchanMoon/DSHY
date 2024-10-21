@@ -1,0 +1,69 @@
+# Orthogonality
+### Orthogonal Vectors and Subspaces
+직교성을 확인 하는 방법: $x^{T}y = 0$ 
+ - 내적이 0임을 확인
+거리계산: $||x|| = \sqrt{a^{2}+b^{2}+...} = \sqrt{x^{T}x}$ 
+
+### Orthonarmal basis
+Orthogonal basis 이면서 $||basis||=1$ 인 basis 
+$R^{2}space$에서의 Orthogonal basis는 $\quad\nu_1=(\cos\theta,\sin\theta)\quad\text{and}\quad\nu_2=(-\sin\theta,\cos\theta)$
+
+### Orthogonal Subspaces
+definition: 두 subspace V, W가 모두 $R^n$ 위에 있을 때 만약 $\forall v \in V, \forall w \in W$ then $v^{T}w = 0$ 
+($R^3$에서 예시)
+#### Fundamental Theorem of orthogonality
+행렬 A에 대해 $R(A) \perp N(A)$ , $C(A) \perp N(A^{T})$ 
+#### orthogonal complement
+definition: $R^n$ 의 subspace V에 대해 V에 수직한 모든 백터들의 공간을 orthogonal complement라하고 $V^{\perp} =$ "V perp" 
+이에 따라  $\text{Dimension formula}:\quad\dim(V)+\dim(V^{\perp})=n$ 도 만족
+$\mathbf{V}^{\perp\perp}=\mathbf{V}$ 도 만족
+
+#### Fundamental Theorem of Linear Algebra, Part II
+- The nullspace is the orthogonal complement of the row space in $\mathbf{R}^n.$
+- The left nullspace is the orthogonal complement of the column space in $\mathbf{R}^m$
+![[Pasted image 20241020073921.png]]
+
+우리가 풀고 싶은 방정식은 $Ax = b$
+-> $Ax=Ax_{r}+Ax_{n}$ ($Ax_{n}$은 0 임으로) 
+->$Ax_{r} = b$ 
+*Every Matrix transfoms its row space onto its column space*
+
+## Cosines and Projections onto Lines
+![[Pasted image 20241020074734.png]]
+### inner products and cosines
+$\mathbf{v}\cdot\mathbf{w}=\|\mathbf{v}\|\|\mathbf{w}\|\cos\theta$
+
+$\text{Cosine of }\theta\quad\cos\theta=\frac{a^\mathrm{T}b}{\|a\|\|b\|}$
+$\|b-a\|^2=\|b\|^2+\|a\|^2-2\|b\|\|a\|\cos\theta$
+$b^\mathrm{T}b-2a^\mathrm{T}b+a^\mathrm{T}a=b^\mathrm{T}b+a^\mathrm{T}a-2\|b\|\|a\|\cos\theta$
+
+### Projection on line
+![[Pasted image 20241020075218.png]]
+p -> 정사영 백터 (projection vector)
+$p =\hat{x}a$
+$(b-\widehat{a})\bot a,\quad\mathrm{or}\quad a^\mathrm{T}(b-\widehat{a})=0,\quad\mathrm{or}\quad\widehat{x}=\frac{a^\mathrm{T}b}{a^\mathrm{T}a}$
+-> $p=\widehat{x}a=\frac{a^{T}b}{a^{\mathrm{T}}a}$ =$Pb$
+P를 projection matrix라고 함
+
+## Projections and Least Squares
+$$\begin{array}{rcl}\textbf{More equations}&\quad2x&=&b_1\\\textbf{than unknowns}&\quad3x&=&b_2\\\textbf{no solution?}&\quad4x&=&b_3.\end{array}$$
+
+E(에러 백터) = $||Ax-b||$ 로 정의 할 수 있는데
+E의 거리 e가 최소가 되려면 컬럼 space에 수직이 되어야함
+![[Pasted image 20241020084656.png]]
+$A^\mathrm{T}(b-A\widehat{x})=0\quad\mathrm{or}\quad A^\mathrm{T}A\widehat{x}=A^\mathrm{T}b$ (Normal equation)
+-> $\widehat{x}=(A^\mathrm{T}A)^{-1}A^\mathrm{T}b.$ (Best estimate)
+-> $p=A\widehat{x}=A(A^\mathrm{T}A)^{-1}A^\mathrm{T}b.$ (Projection)(어디서 굉장히 많이 보던모양)
+
+### The Cross-product Matrix
+$A^{T}A$ :Cross-product Matrix 
+$A^{T}A$ 는 A와 같은 null-space를 가지고 있다.
+만약 A의 열들이 독립이면, $A^{T}A$는 square, symmetruc, invertible
+
+### Projection Matrices
+- $P=A(A^\mathrm{T}A)^{-1}A^\mathrm{T}.$
+- $P^2=P$
+- $P^T=P$
+
+
+ 
