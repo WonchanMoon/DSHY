@@ -21,7 +21,7 @@ $\mathbf{V}^{\perp\perp}=\mathbf{V}$ 도 만족
 #### Fundamental Theorem of Linear Algebra, Part II
 - The nullspace is the orthogonal complement of the row space in $\mathbf{R}^n.$
 - The left nullspace is the orthogonal complement of the column space in $\mathbf{R}^m$
-![[Pasted image 20241020073921.png]]
+![[images/Pasted image 20241020073921.png]]
 
 우리가 풀고 싶은 방정식은 $Ax = b$
 -> $Ax=Ax_{r}+Ax_{n}$ ($Ax_{n}$은 0 임으로) 
@@ -29,7 +29,7 @@ $\mathbf{V}^{\perp\perp}=\mathbf{V}$ 도 만족
 *Every Matrix transfoms its row space onto its column space*
 
 ## Cosines and Projections onto Lines
-![[Pasted image 20241020074734.png]]
+![[images/Pasted image 20241020074734.png]]
 ### inner products and cosines
 $\mathbf{v}\cdot\mathbf{w}=\|\mathbf{v}\|\|\mathbf{w}\|\cos\theta$
 
@@ -38,7 +38,7 @@ $\|b-a\|^2=\|b\|^2+\|a\|^2-2\|b\|\|a\|\cos\theta$
 $b^\mathrm{T}b-2a^\mathrm{T}b+a^\mathrm{T}a=b^\mathrm{T}b+a^\mathrm{T}a-2\|b\|\|a\|\cos\theta$
 
 ### Projection on line
-![[Pasted image 20241020075218.png]]
+![[images/Pasted image 20241020075218.png]]
 p -> 정사영 백터 (projection vector)
 $p =\hat{x}a$
 $(b-\widehat{a})\bot a,\quad\mathrm{or}\quad a^\mathrm{T}(b-\widehat{a})=0,\quad\mathrm{or}\quad\widehat{x}=\frac{a^\mathrm{T}b}{a^\mathrm{T}a}$
@@ -50,7 +50,7 @@ $$\begin{array}{rcl}\textbf{More equations}&\quad2x&=&b_1\\\textbf{than unknowns
 
 E(에러 백터) = $||Ax-b||$ 로 정의 할 수 있는데
 E의 거리 e가 최소가 되려면 컬럼 space에 수직이 되어야함
-![[Pasted image 20241020084656.png]]
+![[images/Pasted image 20241020084656.png]]
 $A^\mathrm{T}(b-A\widehat{x})=0\quad\mathrm{or}\quad A^\mathrm{T}A\widehat{x}=A^\mathrm{T}b$ (Normal equation)
 -> $\widehat{x}=(A^\mathrm{T}A)^{-1}A^\mathrm{T}b.$ (Best estimate)
 -> $p=A\widehat{x}=A(A^\mathrm{T}A)^{-1}A^\mathrm{T}b.$ (Projection)(어디서 굉장히 많이 보던모양)
