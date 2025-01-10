@@ -40,7 +40,7 @@ $$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu},\boldsymbol{\Sigma})=\frac{1}{(2\pi)^{
 **i.i.d.** 한 random sample들의 **합**은, 그 수가 **커질수록** **정규분포**에 가까워진다.
 
 ### Geometry of the Gaussian
-![Geometry of the Gaussian](images/스크린샷%202024-09-14%20오후%203.59.16.png)
+![Geometry of the Gaussian](스크린샷%202024-09-14%20오후%203.59.16.png)
 정규분포는 $\mathbf{x}$에서 $\mathbf{y}$로의 축 변환과 같다.
 $y_i=\mathbf{u}_i^\mathrm{T}(\mathbf{x-\mu})$ << $\mathbf{u}_i$는 공분산 행렬에 대한 고유벡터 (공분산 행렬은 대칭행렬로, 고윳값 항상 실수, 고유벡터들은 orthonormal하게 잡을 수 있음)
 $\mathbf{y}=\mathbf{U}(\mathbf{x-\mu})$ << 벡터로의 확장
@@ -83,13 +83,13 @@ $\mathbf{\Sigma}_{\mathrm{ML}}$의 상수를 $N-1$로 맞출경우 불편추정�
 ?
 ### Mixtures of Gaussians
 정규분포를 여러 개 혼합해서 데이터의 복잡한 분포를 잡아낼 수 있음
-![Mixtures of Gaussians](images/스크린샷%202024-09-15%20오전%208.45.16.png)
+![Mixtures of Gaussians](스크린샷%202024-09-15%20오전%208.45.16.png)
 
 - K개의 가우시안 확률밀도함수 (mixture of Gaussians)
 $$p(\mathbf{x})=\sum_{k=1}^K\pi_k\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$$
 $\pi_k$ 는 mixing coefficients. 0~1
 MLE를 통해 파라미터들을 추정. EM으로도 가능
-![Mixtures of Gaussians2](images/스크린샷%202024-09-15%20오전%208.49.58.png)
+![Mixtures of Gaussians2](스크린샷%202024-09-15%20오전%208.49.58.png)
 
 참고하면 좋은 자료 : https://untitledtblog.tistory.com/133
 ## Periodic Variables
@@ -129,7 +129,7 @@ ex. 정규분포에서는 T(X) = (∑x, ∑x²)가 모수에 대한 충분통계
 위에 봤던 방법들은 모두 모수적(parametic) 접근법
 분포를 잘못 택했을 경우, 나쁜 예측 성능이 나오는 한계가 존재
 ### Histograms
-![Histograms](images/스크린샷%202024-09-15%20오전%209.19.37.png)
+![Histograms](스크린샷%202024-09-15%20오전%209.19.37.png)
 $$p_i=\frac{n_i}{N\Delta_i}$$
 합하면 1. 넓이(Bin, $\Delta$)를 어떻게 잡느냐에 따라 모양이 달라짐
 - 장점
