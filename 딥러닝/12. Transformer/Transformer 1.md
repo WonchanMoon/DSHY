@@ -184,4 +184,78 @@ softmax함수의 gradient는, 입력 값의 크기가 커질 수록 지수적으
 따라서 아래처럼 스케일링을 하여 어텐션을 정의
 $$\mathbf{Y} = \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) \equiv \text{Softmax} \left[ \frac{\mathbf{Q} \mathbf{K}^{\top}}{\sqrt{D_k}} \right] \mathbf{V}.$$
 이때, $D_{k}$는 $\mathrm{Q}\mathrm{K}^{\top}$의 분산.
+#### $D_{k}$에 대한 설명 보충
+$D_{k}$는 $\mathrm{Q}\mathrm{K}^{\top}$의 분산? → 솔직히 무슨 말인지 와닿지 않았음
+$D_{k}$는 key 벡터 차원의 크기 ; $\mathbf{K} : N\times D_{k}$, $N$개의 입력 토큰, 각 토큰이 $D_{k}$의 차원을 가지는 벡터
+근데 이렇게 $D_{k}$를 정의하고 보면, 이게 $\mathbf{Q}\mathbf{K}^{\top}$의 분산과 같아진다고 함.
+
 ![[12.1.5.png]]
+이 구조가 하나의 Attention Head
+
+## 12.1.6 Multi-head Attention
+위 구조를 우리는 하나의 **Attention Head**라 한다. 어텐션 헤드는, 입력 토큰 간의 의존성 패턴에 주목(Attend)할 수 있도록 한다. 하나의 어텐션 헤드는, 하나의 의존성 패턴에 집중하는 경향이 있다.
+
+하지만 우리는, 동시에 여러 개의 어텐션 패턴이 중요할 수 있다. 예를 들어서, 한 패턴은 말의 시제(tense)와 관련된 것이고, 다른 패턴은 어휘에 관련된 것일 수 있다. 이때 하나의 어텐션 헤드만을 사용한다면, 이러한 효과들이 평균으로 퉁쳐져서 중요한 정보를 놓칠 수 있다.
+
+우리가 $H$ 개의 헤드를 가지고 있다고 생각하면, 각 헤드는 다음과 같다.
+$$\mathbf{H}_h = \text{Attention}(\mathbf{Q}_h, \mathbf{K}_h, \mathbf{V}_h)$$
+여기서의 어텐션 함수는, 다음 Scaled self-attention을 의미한다.
+$$\mathbf{Y} = \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) \equiv \text{Softmax} \left[ \frac{\mathbf{Q} \mathbf{K}^{\top}}{\sqrt{D_k}} \right] \mathbf{V}.$$
+각 헤드에 대해, 별도로 쿼리, 키, 값 행렬을 정의한다.
+$$\begin{aligned}
+    \mathbf{Q}_h &= \mathbf{X} \mathbf{W}_h^{(q)} \\
+    \mathbf{K}_h &= \mathbf{X} \mathbf{W}_h^{(k)} \\
+    \mathbf{V}_h &= \mathbf{X} \mathbf{W}_h^{(v)}
+\end{aligned}
+$$
+이렇게 계산된 각 헤드들을 하나의 행렬로 연결한 후, 가중치 행렬 $\mathbf{W}^{(\text{o})}$를 사용하여 선형변환 해준다.
+$$\mathbf{Y}(\mathbf{X}) = \text{Concat} \left[ \mathbf{H}_1, \dots, \mathbf{H}_H \right] \mathbf{W}^{(\text{o})}$$
+이 계산을 그림으로 나타내면, 아래 그림 12.1.6과 같다.
+
+12.1.6
+![[12.1.6.png]]
+
+각 행렬 $\mathbf{H}_{h}$는 $N\times D_{\text{v}}$의 크기를 가지며, 이를 Concat한 매트릭스는 $N\times H D_{\text{v}}$의 크기를 가진다. 이 Concat된 매트릭스는, $H D_{\text{v}}\times D$의 크기를 가지는 $\mathbf{W}^{(\text{o})}$에 의해 $N\times D$의 크기를 가지는 매트릭스 $\mathbf{Y}$로 선형변환된다. 이는 입력 행렬 $\mathbf{X}$와 동일한 차원이 된다.
+
+행렬 $\mathbf{W}^{(\text{o})}$의 원소들은 훈련 과정에서 쿼리, 키, 값 행렬 ($\mathbf{Q}_{h}, \mathbf{K}_{h}, \mathbf{V}_{h}$)과 함께 학습된다.
+
+또한 일반적으로, $D_{\text{v}}$는 $D/H$로 설정하여, concat된 매트릭스의 크기가 $N\times D$가 되도록한다.
+
+![[Algorithm 12.1.png]]
+![[Algorithm 12.2.png]]
+
+## 12.1.7 Transformer layers
+멀티 헤드 셀프 어텐션은, 트랜스포머 네트워크의 핵심 구조.
+우리는 신경망이 깊어질수록 성능이 좋다는 것을 알고 있음. 
+따라서 **깊게깊게 쌓고** 싶고, 훈련 효율성을 위해 **잔차 연결**을 수행하고 싶음.
+
+따라서 우리는 깊게 쌓기 위해, 어텐션 레이어의 출력 차원을 입력 차원과 동일한 $N\times D$로 맞춰주어야 함.
+그리고 이때 레이어의 출력 값을 안정화 하는 레이어 정규화를 수행.
+$$\mathbf{Z} = \text{LayerNorm}\left[\mathbf{Y}(\mathbf{X}) + \mathbf{X}\right]
+$$
+이때 $\mathbf{Y}(\mathbf{X})$는, 멀티 헤드 셀프 어텐션
+$$\mathbf{Y}(\mathbf{X}) = \text{Concat} \left[ \mathbf{H}_1, \dots, \mathbf{H}_H \right] \mathbf{W}^{(\text{o})}$$
+
+또는, 레이어 정규화가 멀티 헤드 셀프 어텐션 이전에 적용되는 Pre-norm으로 대체 가능.
+$$\mathbf{Z} = \mathbf{Y}(\mathbf{X}') + \mathbf{X}, \quad \text{where} \quad \mathbf{X}' = \text{LayerNorm}[\mathbf{X}].
+$$
+위 두 경우 모두, $\mathbf{Z}$의 차원은 입력 차원과 같은 $N\times D$ 임.
+
+> 레이어 정규화?
+> 각 row 별(각 토큰 별)로, 평균을 0, 분산을 1로 맞추어 주는 과정
+
+우리는 여기까지 봤을 때, 어텐션 메커니즘은 선형결합 이후 softmax 함수를 통과시켜 비선형성을 만들어주는 것을 볼 수 있다. 하지만 이래도 결국 선형결합을 조금 변형시킨 것에 불과하다.
+
+모델을 더 유연하게 만들기 위해, 레이어의 출력을 $D$개의 입력과 $D$개의 출력을 가진 표준 비선형 신경망으로 처리할 수 있음. 이를 $\text{MLP}[ . ]$로 나타냄.
+$$\widetilde{\mathbf{X}} = \text{LayerNorm}[\text{MLP}(\mathbf{Z}) + \mathbf{Z}]
+$$
+
+여기서도 마찬가지로, pre-norm을 사용할 수도 있겠죠?
+$$\widetilde{\mathbf{X}} = \text{MLP}(\mathbf{Z}') + \mathbf{Z}, \quad \text{where} \quad \mathbf{Z}' = \text{LayerNorm}[\mathbf{Z}].
+$$
+
+이 과정을 그림으로 나타내면,![[12.1.7.png]]
+이게 하나의 트랜스포머 레이어고, 어텐션 레이어와 피드포워드 레이어로 구성된다.
+
+![[Algorithm 12.3.png]]
+
