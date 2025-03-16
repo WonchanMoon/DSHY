@@ -174,3 +174,69 @@ $$O\left(\left(\frac{\sigma_{\text{max}}}{\sigma_{2}}\right)^{2}\right)$$
 - 초기에는 작은 $\rho$ 를 사용하여 탐색을 시작하고, 샘플링이 진행됨에 따라 $\rho$ 를 조절하는 방법도 가능하다. 이를 **Adaptive Metropolis-Hastings** 기법이라고 한다.
 #### ✅ **제안 3: Hamiltonian Monte Carlo (HMC) 사용**
 - MH는 단순 랜덤 워크를 기반으로 하므로 느리게 수렴할 수 있음. **Hamiltonian Monte Carlo (HMC)** 는 에너지 기반 탐색을 통해 이 문제를 해결할 수 있다.
+
+
+## 14.2.4 Gibbs Sampling
+#### 아이디어 설명
+초기 샘플 설정 : $M$ 개의 sample$(z_{1}^{(0)},...,z_{M}^{(0)})$로 시작
+각 샘플의 Conditional Distribution으로 샘플 업데이트
+$$z_{i}^{(\tau + 1)}\sim p(z_{i}|z_{-i}^{(\tau)})$$
+
+따라서 **Gibbs Sampling을 하기 위해서는**, Conditional Distribution을 알 수 있어야 함.
+만약 Conditional Distribution을 모른다면,
+1. 다른 샘플링 기법을 사용하거나
+2. Conditional Distribution을 근사해서 Gibbs Sampling을 적용
+
+또한 **Gibbs Sampling이 수렴**하기 위해서는,
+1. 목표 분포를 invariant distribution으로 가져야함.
+	>  Invariant Distribution : Transition 이후에도 분포가 변하지 않아야함.
+2. Conditional Distribution이 0이 되면 안됨.
+	> 만약 0이 된다면, 특정 값에 갇혀 버릴 수 있음.
+
+![[Algorithm 14.3.png]]
+
+![[14.2.4.png]]
+#### 예시
+분포 : $p(z_{1}, z_{2}, z_{3})$
+우리가 $\tau$ 번째 step까지 마무리 했고, $z_{1}^{(\tau)}, z_{2}^{(\tau)}, z_{3}^{(\tau)}$ 까지 구함.
+
+$z_{1}^{(\tau + 1)}$은 분포 $p(z_{1}|z_{2}^{(\tau)}, z_{3}^{(\tau)})$에서 샘플링해서 업데이트.
+$z_{2}^{(\tau + 1)}$은 분포 $p(z_{2}|z_{1}^{(\tau + 1)}, z_{3}^{(\tau)})$에서 샘플링해서 업데이트.
+$z_{3}^{(\tau + 1)}$은 분포 $p(z_{3}|z_{1}^{(\tau + 1)}, z_{2}^{(\tau + 1)})$에서 샘플링해서 업데이트.
+
+#### 하지만 Gibbs Sampling은, 속도가 살짝 느림
+Gibbs Sampling을 통해, 위 그림의 빨간색 분포에서 independent한 Sample을 뽑으려면, $(L/l)^{2}$만큼의 step이 필요함.
+또한, 빨간색 분포 처럼 두 변수가 높은 상관관계를 가진다면, 속도는 더욱 느려짐.
+> 이를 해결하기 위해, PCA같은 방법을 이용해서 축을 서로 상관관계가 낮도록 바꾸기도 함.
+> 낮은 상관관계에서는 효율적임. $\mathcal{O(l)}$
+
+#### 이걸 해결하기 위한 기법
+**over-relaxation** 기법을 이용하면, 수렴 속도를 높일 수 있음.
+
+기존에는 $z_{i}^{(\tau + 1)}$을 $p(z_{i}|z_{-i}^{(\tau)})$에서 샘플링 하는 것으로 끝냈다면,
+over-relaxation에서는
+$$z_{i}^{(\tau + 1)}=\mu+\alpha(z_{i}^{(\tau)}-\mu)+\eta$$
+이때 $\alpha\in(-1,1),\eta\sim\mathcal{N}(\mathbf{0}, \mathbf{I})$
+$\mu$는 Conditional Distribution의 평균
+$\eta$는 그저 노이즈를 주기위한 값, 
+$\alpha$는 파라미터, $\alpha = 0$이면 그냥 Gibbs Sampling과 다를 게 없음. $\alpha<0$이면, 평균의 반대방향으로 다음 값이 업데이트
+
+#### 하지만,
+over-relaxation은 Conditional Distribution이 Gaussian일 때 잘 작동.
+non-Gaussian에도 적용할 수 있는 **ordered over-relaxation**이 있음.
+
+## 14.2.5 Ancestral Sampling
+다양한 모델에서, 우리는 $p(\mathbf{z})$를 그래프를 이용하여 나타낼 수 있음.
+$$p(\mathbf{z})=\prod^{M}_{i=1}{p(\mathbf{z}_{i}|\text{pa}(i))}$$
+
+그리고 우리는 이 경우에, 그래프를 한 번 쭉 돌면 joint distribution, $p(\mathbf{z})$에서 부터 샘플을 얻을 수 있음.
+
+이때 일부 노드가 관측이 되었다고 치자.
+관측된 노드들을 모아 evidence set $\mathcal{E}$ 라고 하자.
+
+우리는 이제 **likelihood weighted sampling** 기법을 이용하여 샘플링을 수행할 것임.
+
+#### likelihood weighted sampling
+각 변수에 대하여, 
+해당 변수가 evidence set 에 존재한다면, 그냥 그 값을 가져다 사용하고,
+그렇지 않다면 $p(\mathbf{z}_{i}|\text{pa}(i))$에서 샘플링.
