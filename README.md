@@ -11,23 +11,30 @@
 1. 딥러닝
    - 1주에 1챕터 목표
    - 1명씩 돌아가면서 발표
-2. EDA 실습
-   - 1명씩 돌아가면서 데이터 제공
-   - 각각 EDA를 진행 후 서로 의견 나누고, 피드백
-3. 선형대수
+2. 선형대수
    - 2주에 1챕터 목표
    - 1명씩 돌아가면서 내용 요약 후 과제 만들기
    - 과제 내용 피드백
-4. 공모전 준비
 
 
 ## After work
-- 12/14(토) 6시~
-   - 선형대수 5-6, 6장 1/3 문원찬
-   - 딥러닝 8장-2 한만휘
-   - 딥러닝 9장-1 정성준
-- 12/22(일)
-   - 딥러닝 9장-2 문원찬
-   - 딥러닝 9장-3 한만휘
-   - 선형대수 마무리 6장 정성준
-
+구현 해보고 싶은 모델
+pytorch에서 각모델이 어떻게 구현 되어있는지 이해하고 리뷰
+- CNN
+	- 기본 CNN
+	- Visualizing Trained CNN
+	- Object Detection
+	- Image Segmentation
+- Transformers
+	- RNN
+	- LSTM
+	- transformers
+- GNN
+	- GNN
+	- Node classification
+	- Edge classification
+	- Graph classification
+- Markov-chain Monte carlo
+- GAN
+- Autoencoder
+- Diffusion Models 
